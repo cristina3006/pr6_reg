@@ -9,3 +9,26 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### Hola
+#### Hola 
+
+- 
+
+- 
+
+**
+****
+
+
+```{r include=FALSE}
+install.packages("MASS")
+install.packages("caret")
+install.packages("stats")
+install.packages("olsrr")
+install.packages("kable")
+install.packages("kableExtra")
+install.packages("knit")
+install.packages("rmarkdown")
+```
+
+
