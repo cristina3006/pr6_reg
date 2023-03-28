@@ -2,14 +2,16 @@
 title: "regresion lineal"
 author: "cristina malia"
 date: "2023-03-27"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### 
+ejercicio 1 
 
 ```{r include=FALSE}
 install.packages("MASS", repos = "http://cran.us.r-project.org")
@@ -21,10 +23,71 @@ install.packages("kableExtra", repos = "http://cran.us.r-project.org")
 install.packages("knit", repos = "http://cran.us.r-project.org")
 install.packages("rmarkdown", repos = "http://cran.us.r-project.org")
 ```
-
+ejercicio 2
 
 ```{r}
-c("y_cuentas")
-c("x_distancia")
+y_cuentas = c(110,2,6,98,40,94,31,5,8,10)
+x_distancia = c(1.1,100.2,90.3,5.4,57.5,6.6,34.7,65.8,57.9,86.1)
+
 ```
+
+Ejercicio 3
+
+```{r}
+plot(x_distancia, y_cuentas)
+```
+```{r}
+cor.test(x_distancia, y_cuentas)
+```
+Ejercicio 4
+```{r}
+hist(x_distancia, breaks = 10, main = "Histograma de x_distancia", xlab = "Distancia")
+shapiro.test(x_distancia)
+
+```
+Ejercicio 5
+
+```{r}
+xy <- x_distancia * y_cuentas
+
+```
+Ejercicio 6
+
+```{r}
+x_cuadrado <- x_distancia^2
+
+```
+
+Ejercicio 7
+
+```{r}
+tabla_datos <- data.frame(y_cuentas, x_distancia, xy, x_cuadrado)
+
+```
+Ejercicio 8
+```{r}
+library(kableExtra)
+kbl(tabla_datos)
+```
+Ejercicio 9
+
+```{r}
+colSums(tabla_datos)
+
+```
+Ejercicio 10
+
+sumamos las 4 columnas
+
+```{r}
+sumatorio_columnas = colSums(tabla_datos[, 1:4])
+sumatorio_columnas
+
+
+
+
+
+
+
+
 
