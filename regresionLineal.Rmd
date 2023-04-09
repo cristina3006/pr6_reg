@@ -189,10 +189,6 @@ summary(modelo1)
 Ejercicio 17
 
 ```{r}
-```
-
-
-```{r}
 #Prediciendo el conjunto de validación
 prediccion_validacion <- predict(modelo_entrenamiento, newdata = data.frame(x_distancia_validacion))
 prediccion_validacion
@@ -200,9 +196,29 @@ prediccion_validacion
 #Los asteriscos inmediatamente a la derecha de los valores arrojados tras ajustar el modelo, son usados para indicar los intervalos de confianza. Estos intervalos de confianza, a su vez, nos muestran la incertidumbre que hay en los valores estimados por el modelo.
 ```
 
-
+Ejercicio 18
 ```{r}
+
+Los grados de libertad del modelo se calculan restando el número total de parámetros estimados en el modelo del número total de observaciones. En otras palabras, los grados de libertad son el número de observaciones menos el número de parámetros estimados. Por ejemplo, si el modelo tiene 5 parámetros estimados y hay 10 observaciones, entonces los grados de libertad del modelo serán 5.
 ```
+
+Ejercicio 19
+```{r}
+# Ajustar modelo de regresión lineal simple
+modelo <- lm(y ~ x, data = datos)
+
+# Obtener resumen del modelo
+resumen_modelo <- summary(modelo)
+
+# Total de varianza explicada
+varianza_explicada <- sum(resumen_modelo$fstatistic[2])
+
+# Total de varianza no explicada
+varianza_no_explicada <- sum(resumen_modelo$fstatistic[3])
+
+
+```
+
 
 
 
