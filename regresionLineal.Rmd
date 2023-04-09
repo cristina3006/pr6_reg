@@ -218,9 +218,59 @@ varianza_no_explicada <- sum(resumen_modelo$fstatistic[3])
 
 
 ```
+Ejercicio 20
 
+```{r}
+# Cargar el paquete "boot"
+library(boot)
 
+# Definir la función de ajuste del modelo
+glm.fit <- function(data, indices){
+  train <- data[indices, ]
+  glm(Salario ~ Edad + Experiencia, data = train)
+}
 
+# Aplicar la validación cruzada simple con 10 folds
+set.seed(123) # Establecer semilla para reproducibilidad
+cv_modelo <- cv.glm(data = tabla_datos, glmfit = glm.fit, K = 10)
+
+# Obtener el error de validación cruzada
+cv_error <- cv_modelo$delta[1]
+
+# Imprimir el error de validación cruzada
+print(cv_error)
+
+```
+
+Ejercicio 21
+
+```{r}
+library(car)
+influencePlot(modelo)
+
+```
+
+Ejercicio 22
+
+```{r}
+library(lmtest)
+dwtest(modelo)
+
+```
+
+Ejercicio 23
+
+```{r}
+# Obtener los residuos estandarizados
+model_residuales_std <- rstandard(modelo_lm)
+
+# Graficar los residuos estandarizados en función de las predicciones
+plot(modelo_lm$fitted.values, model_residuales_std, 
+     xlab = "Predicciones", ylab = "Residuos estandarizados",
+     main = "Gráfico de residuos estandarizados")
+abline(h = 0, lty = 2)
+
+```
 
 
 
