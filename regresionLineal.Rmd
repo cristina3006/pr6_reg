@@ -3,8 +3,8 @@ title: "regresion lineal"
 author: "cristina malia"
 date: "2023-03-27"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -15,6 +15,7 @@ ejercicio 1
 
 ```{r include=FALSE}
 install.packages("MASS", repos = "http://cran.us.r-project.org")
+library(MASS)
 install.packages("caret", repos = "http://cran.us.r-project.org")
 install.packages("stats", repos = "http://cran.us.r-project.org")
 install.packages("olsrr", repos = "http://cran.us.r-project.org")
@@ -82,6 +83,130 @@ sumamos las 4 columnas
 ```{r}
 sumatorio_columnas = colSums(tabla_datos[, 1:4])
 sumatorio_columnas
+```
+
+Añadimos esos valores como 1 fila al data frame
+Creamos primero un data frame con los nuevos valores
+```{r}
+totales_sumatorio = data.frame(x_distancia = c(505.60), y_cuentas =c(404.00), xy = c(7041.70), x_cuadrado =c(37873.66))
+```
+Para luego añadirselo como fila al data frame sumatorio_columnas_df
+```{r}
+sumatorio_columnas_df =rbind(tabla_datos, totales_sumatorio)
+
+kbl(sumatorio_columnas_df)%>%
+kable_minimal() %>%
+row_spec(nrow(sumario_columna_df), bold =TRUE, color = "black", background = "white")
+```
+
+Ejercicio 11
+
+```{r}
+# Sumamos x e y
+404*505.6
+#EntreNumCasos
+204262.4/10
+#SumatorioXY-Anterior
+7041.7-20426.24
+#X2
+505.6^2
+#EntreNumCasos
+255631.4/10
+#SumatorioX2-Anterior
+37873.66-25563.14
+#Primero/Segundo
+-13384.54/12310.52
+#SumatorioX/NumeroCasos+NumeroAnterior*SumatorioY/NumeroCasos
+404/10+1.087244*505.6/10
+```
+Ejercicio 12
+
+```{r}
+# Cargar paquetes
+library(ggplot2)
+
+# Ajustar modelo de regresión lineal
+modelo <- lm(y ~ x, data = datos)
+
+# Crear gráfico de dispersión con recta de regresión
+ggplot(data = datos, aes(x = x, y = y)) +
+  geom_point() + # Agregar nube de puntos
+  geom_smooth(method = "lm", se = FALSE, color = "red") + # Agregar recta de regresión
+  labs(title = "Gráfico de dispersión con recta de regresión",
+       x = "Variable X", y = "Variable Y") + # Editar título y nombres de ejes
+  geom_text(aes(x= max(datos$x), y= max(datos$y), label= paste("y =", round(coef(modelo)[2],2), "x +", round(coef(modelo)[1],2))), hjust= 1, vjust=1) # Agregar la ecuación de la recta de regresión
+
+```
+
+Ejercicio 13
+
+```{r}
+# Calcular los residuos
+residuos <- resid(modelo)
+
+# Calcular los residuos estandarizados
+residuos_estandarizados <- rstandard(modelo)
+
+# Calcular los residuos estudentizados
+residuos_estudentizados <- rstudent(modelo)
+
+```
+
+Ejercio 14
+
+```{r}
+# Crear una matriz con la observación de interés
+nueva_obs <- data.frame(distancia_km = 6.6)
+
+# Calcular el pronóstico o estimación del modelo para la nueva observación
+pronostico <- predict(modelo, newdata = nueva_obs)
+
+# Mostrar el resultado
+pronostico
+
+```
+
+
+
+
+
+
+Ejercicio 15
+```{r}
+library(dplyr)
+train <- data %>% dplyr: : sample_frac(.8)
+test <- dplyr:: anti_join((data, train)
+```
+
+Ejercicio 16
+
+```{r}
+library (stats)
+modelo1<- ~ x_distancia, entrenamiento)
+summary(modelo1)
+```
+
+Ejercicio 17
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
